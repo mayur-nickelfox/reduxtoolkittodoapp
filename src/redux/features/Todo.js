@@ -4,20 +4,22 @@ export const userSlice = createSlice({
   name: "todos",
   initialState: {
     value: [
-      { value: "Drop Shadow", checked: true },
-      { value: "Drop Bass", checked: true },
-      { value: "Drop Fizz Buzz", checked: false },
+      { value: "Drop Shadow" },
+      { value: "Drop Bass" },
+      { value: "Drop Fizz Buzz" },
     ],
   },
   reducers: {
     addTodo: (state, action) => {
       state.value.push(action.payload);
     },
-    updateTodo: (state, action) =>{
-      state.value.
-    }
+    deleteTodo: (state, action) => {
+      state.value = state.value.filter((item, index) => {
+        return index !== action.payload;
+      });
+    },
   },
 });
 
-export const { addTodo } = userSlice.actions;
+export const { addTodo, deleteTodo } = userSlice.actions;
 export default userSlice.reducer;

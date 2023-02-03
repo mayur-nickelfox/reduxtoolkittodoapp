@@ -1,7 +1,7 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
-import { addTodo } from "./redux/features/Todo";
+import { addTodo, deleteTodo } from "./redux/features/Todo";
 function App() {
   const dispatch = useDispatch();
   const todoLists = useSelector((state) => state.todo.value);
@@ -17,8 +17,12 @@ function App() {
 
   const handleAddTodo = () => {
     // alert(inputField);
-    dispatch(addTodo(inputField));
-    setInputfield("");
+    dispatch(addTodo({ value: inputField }));
+    // setInputfield("");
+  };
+
+  const handleDelete = (index) => {
+    dispatch(deleteTodo(index));
   };
 
   return (
@@ -65,7 +69,16 @@ function App() {
                     <div style={{ width: "100%" }}>{item.value}</div>
                   </div>
                 </div>
-                <input type="checkbox" checked={item.checked} />
+                <div>
+                  <span
+                    style={{ paddingLeft: 20, color: "red", cursor: "pointer" }}
+                    onClick={() => {
+                      handleDelete(index);
+                    }}
+                  >
+                    Delete
+                  </span>
+                </div>
               </div>
             );
           })}
