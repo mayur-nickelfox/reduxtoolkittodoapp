@@ -14,11 +14,9 @@ function App() {
   };
 
   // Input on add click function
-
   const handleAddTodo = () => {
-    // alert(inputField);
     dispatch(addTodo({ value: inputField }));
-    // setInputfield("");
+    setInputfield("");
   };
 
   const handleDelete = (index) => {
